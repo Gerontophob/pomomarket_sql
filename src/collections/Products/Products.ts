@@ -100,7 +100,7 @@ import {
               await stripe.products.create({
                 name: data.name,
                 default_price_data: {
-                  currency: 'USD',
+                  currency: 'EUR',
                   unit_amount: Math.round(data.price * 100),
                 },
               })
@@ -156,7 +156,7 @@ import {
       },
       {
         name: 'price',
-        label: 'Price in USD',
+        label: 'Price in EUR',
         min: 0,
         max: 1000,
         type: 'number',
