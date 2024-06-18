@@ -5,11 +5,11 @@ export const Icons = {
     <svg
       {...props}
       viewBox="0 0 1400 1400"
-      clip-rule="evenodd"
-      fill-rule="evenodd"
-      image-rendering="optimizeQuality"
-      shape-rendering="geometricPrecision"
-      text-rendering="geometricPrecision"
+      clipRule="evenodd"
+      fillRule="evenodd"
+      imageRendering="optimizeQuality"
+      shapeRendering="geometricPrecision"
+      textRendering="geometricPrecision"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
     >

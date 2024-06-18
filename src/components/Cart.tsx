@@ -97,7 +97,7 @@ const Cart = () => {
               aria-hidden="true"
               className="relative mb-4 h-60 w-60 text-mted-foreground"
             >
-              <Image src="/hippo-empty-cart.png" fill alt="Panier vide" />
+              <Image src="/pomo-empty-cart.jpg" fill alt="Panier vide" />
             </div>
             <div className="text-xl font-semibold">Votre panier est vide</div>
             <SheetTrigger asChild>

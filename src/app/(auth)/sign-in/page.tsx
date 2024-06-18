@@ -4,7 +4,7 @@ import { Icons } from "@/components/Icons";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
@@ -41,10 +41,8 @@ const Page = () => {
   });
 
   const { mutate: signIn, isLoading } = trpc.auth.signIn.useMutation({
-    onSuccess: () => {
+    onSuccess: async () => {
       toast.success("Connecté avec succès !");
-
-      router.refresh();
 
       if (origin) {
         router.push(`/${origin}`);
@@ -57,6 +55,7 @@ const Page = () => {
       }
 
       router.push("/");
+      router.refresh();
     },
     onError: (err) => {
       if (err.data?.code === "UNAUTHORIZED") {
@@ -75,14 +74,14 @@ const Page = () => {
         <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
           <div className="flex flex-col items-center space-y-2 text-center">
             <Icons.logo className="h-20 w-20" />
-            <h1 className="text-2xl font-bold">
+            <h1 className="text-2xl font-semibold tracking-tight">
               Connectez-vous à votre compte {isSeller ? "vendeur" : ""}
             </h1>
 
             <Link
               className={buttonVariants({
                 variant: "link",
-                className: "text-muted-foreground gap-1.5",
+                className: "gap-1.5",
               })}
               href="/sign-up"
             >
@@ -127,7 +126,12 @@ const Page = () => {
                   )}
                 </div>
 
-                <Button>Se connecter</Button>
+                <Button disabled={isLoading}>
+                  {isLoading && (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  )}
+                  Se connecter
+                </Button>
               </div>
             </form>
 

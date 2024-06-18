@@ -32,7 +32,7 @@ export const EmailTemplate = ({
       <Body style={main}>
         <Container style={container}>
           <Img
-            src={`${process.env.NEXT_PUBLIC_SERVER_URL}/hippo-newsletter-sign-up.png`}
+            src={`${process.env.NEXT_PUBLIC_SERVER_URL}/pomo-newsletter-sign-up.jpg`}
             width="150"
             height="150"
             alt="POMO"
@@ -93,7 +93,7 @@ const btnContainer = {
 
 const button = {
   padding: "12px 12px",
-  backgroundColor: "#2563eb",
+  backgroundColor: "#3cac5c",
   borderRadius: "3px",
   color: "#fff",
   fontSize: "16px",

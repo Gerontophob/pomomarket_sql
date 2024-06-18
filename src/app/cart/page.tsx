@@ -60,10 +60,10 @@ const Page = () => {
                   className="relative mb-4 h-40 w-40 text-muted-foreground"
                 >
                   <Image
-                    src="/hippo-empty-cart.png"
+                    src="/pomo-empty-cart.jpg"
                     fill
                     loading="eager"
-                    alt="empty shopping cart hippo"
+                    alt="empty shopping cart POMO"
                   />
                 </div>
                 <h3 className="font-semibold text-2xl">
@@ -142,11 +142,11 @@ const Page = () => {
                           </div>
                         </div>
 
-                        <p className="mt-4 flex space-x-2 text-sm text-gray-700">
-                          <Check className="h-5 w-5 flex-shrink-0 text-green-500" />
+                        {/* <p className="mt-4 flex space-x-2 text-sm text-gray-700"> */}
+                        {/* <Check className="h-5 w-5 flex-shrink-0 text-green-500" /> */}
 
-                          <span>?Placeholder text - do we need it?</span>
-                        </p>
+                        {/* <span>?Placeholder text - do we need it?</span> */}
+                        {/* </p> */}
                       </div>
                     </li>
                   );

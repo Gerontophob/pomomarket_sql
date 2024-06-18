@@ -16,8 +16,8 @@ interface PageProps {
 }
 
 const BREADCRUMBS = [
-  { id: 1, name: "Home", href: "/" },
-  { id: 2, name: "Products", href: "/products" },
+  { id: 1, name: "Accueil", href: "/" },
+  { id: 2, name: "Produits", href: "/products" },
 ];
 
 const Page = async ({ params }: PageProps) => {
