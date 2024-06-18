@@ -50,7 +50,7 @@ export interface Product {
   name: string;
   description?: string | null;
   price: number;
-  category: 'legumes' | 'fruits' | 'viandes' | 'produits_laitiers' | 'boulangerie_patisserie';
+  category: 'legumes' | 'fruits' | 'viandes' | 'produits_laitiers' | 'boulangerie';
   product_files: string | ProductFile;
   approvedForSale?: ('pending' | 'approved' | 'denied') | null;
   priceId?: string | null;

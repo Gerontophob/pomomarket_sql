@@ -6,20 +6,21 @@ import Link from "next/link";
 
 const perks = [
   {
-    name: "Quick Delivery",
+    name: "Livraison rapide",
     Icon: Bike,
-    description: "Get groceries delivered to you in 30 minutes by bike.",
+    description: "Faites-vous livrer vos courses en 30 minutes à vélo.",
   },
   {
-    name: "Guaranteed Quality",
+    name: "Qualité garantie",
     Icon: CheckCircle,
-    description: "Not happy? We offer a refund for any product you don't like.",
+    description:
+      "Pas satisfait ? Nous vous remboursons tout produit que vous n'aimez pas.",
   },
   {
-    name: "For the Planet",
+    name: "Pour la planète",
     Icon: Leaf,
     description:
-      "We hate single-use plastic. We only use paper bags, and you can give them back to us so we can reuse them.",
+      "Nous n'utilisons que des sacs en papier, que vous pouvez nous retourner pour réutilisation.",
   },
 ];
 
