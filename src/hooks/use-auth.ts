@@ -21,9 +21,10 @@ export const useAuth = () => {
 
             router.push("/sign-in")
             router.refresh()
-        } catch (err) {}
+        } catch (err) {
             toast.error("Impossible de se déconnecter, veuillez réessayer.")
+        }
     }
 
-    return {signOut}
+    return { signOut }
 }

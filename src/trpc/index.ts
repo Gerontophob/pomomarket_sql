@@ -14,13 +14,13 @@ export const appRouter = router({
         limit: z.number().min(1).max(100),
         cursor: z.number().nullish(),
         query: QueryValidator,
-    })).query(async ({input}) => {
+    })).query(async ({ input }) => {
         const { query, cursor } = input
-        const { sort, limit, ...queryOpts} = query
+        const { sort, limit, ...queryOpts } = query
 
         const payload = await getPayloadClient()
 
-        const parsedQueryOpts: Record<string, {equals: string}> = {}
+        const parsedQueryOpts: Record<string, { equals: string }> = {}
 
         Object.entries(queryOpts).forEach(([key, value]) => {
             parsedQueryOpts[key] = {

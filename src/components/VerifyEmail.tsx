@@ -28,6 +28,7 @@ const VerifyEmail = ({ token }: VerifyEmailProps) => {
       </div>
     );
   }
+
   if (data?.success) {
     return (
       <div className="flex h-full flex-col items-center justify-center">

@@ -18,7 +18,7 @@ const NavItems = () => {
     return () => {
       document.removeEventListener("keydown", handler);
     };
-  });
+  }, []);
 
   const isAnyOpen = activeIndex !== null;
 
@@ -36,12 +36,16 @@ const NavItems = () => {
             setActiveIndex(i);
           }
         };
+
+        const close = () => setActiveIndex(null);
+
         const isOpen = i === activeIndex;
 
         return (
           <NavItem
             category={category}
             handleOpen={handleOpen}
+            close={close}
             isOpen={isOpen}
             key={category.value}
             isAnyOpen={isAnyOpen}
