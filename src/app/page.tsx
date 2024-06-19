@@ -41,7 +41,9 @@ export default function Home() {
             <Link href="/products" className={buttonVariants()}>
               Produits de Saison
             </Link>
-            <Button variant="ghost">L&apos;équipe POMO &rarr;</Button>
+            <Link href="/pomo-equipe">
+              <Button variant="ghost">L&apos;équipe POMO &rarr;</Button>
+            </Link>
           </div>
         </div>
 
@@ -61,10 +63,11 @@ export default function Home() {
                 className="text-center md:flex md:items-start md:text-left lg:block lg:text-center"
               >
                 <div className="md:flex-shrink-0 flex justify-center">
-                  <div className="h-16 w-16 flex items-center justify-center rounded-full bg-green-100 text-green-900">
+                  <div className="h-16 w-16 flex items-center justify-center rounded-full bg-green-100 text-green-600">
                     {<perk.Icon className="w-2/5 h-2/5" />}
                   </div>
                 </div>
+
                 <div className="mt-6 md:m1-4 md:mt-0 lg:ml-0 lg:mt-6">
                   <h3 className="text-base font-medium text-gray-900">
                     {perk.name}

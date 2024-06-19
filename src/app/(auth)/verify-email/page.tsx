@@ -29,6 +29,7 @@ const VerifyEmailPage = ({ searchParams }: PageProps) => {
             </div>
 
             <h3 className="font-semibold text-2xl">Consultez votre e-mail</h3>
+
             {toEmail ? (
               <p className="text-muted-foreground text-center">
                 Nous avons envoyé un lien de vérification à{" "}

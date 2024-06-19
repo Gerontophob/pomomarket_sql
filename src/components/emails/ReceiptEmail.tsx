@@ -119,12 +119,6 @@ export const ReceiptEmail = ({
                         : product.description}
                     </Text>
                   ) : null}
-                  <Link
-                    href={`${process.env.NEXT_PUBLIC_SERVER_URL}/thank-you?orderId=${orderId}`}
-                    style={productLink}
-                  >
-                    ?Download Asset?
-                  </Link>
                 </Column>
 
                 <Column style={productPriceWrapper} align="right">
@@ -272,12 +266,6 @@ const productDescription = {
   fontSize: "12px",
   color: "rgb(102,102,102)",
   ...resetText,
-};
-
-const productLink = {
-  fontSize: "12px",
-  color: "rgb(0,112,201)",
-  textDecoration: "none",
 };
 
 const productPriceTotal = {

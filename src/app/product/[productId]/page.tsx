@@ -46,7 +46,7 @@ const Page = async ({ params }: PageProps) => {
     ({ value }) => value === product.category
   )?.label;
 
-  const validUrls = product.images
+  const validUrls = (product.images as { image: string | { url: string } }[])
     .map(({ image }) => (typeof image === "string" ? image : image.url))
     .filter(Boolean) as string[];
 
@@ -90,7 +90,7 @@ const Page = async ({ params }: PageProps) => {
             <section className="mt-4">
               <div className="flex items-center">
                 <p className="font-medium text-gray-900">
-                  {formatPrice(product.price)}
+                  {formatPrice(product.price as string)}
                 </p>
 
                 <div className="ml-4 border-l text-muted-foreground border-gray-300 pl-4">
@@ -100,7 +100,7 @@ const Page = async ({ params }: PageProps) => {
 
               <div className="mt-4 space-y-6">
                 <p className="text-base text-muted-foreground">
-                  {product.description}
+                  {product.description as string}
                 </p>
               </div>
 
@@ -110,7 +110,7 @@ const Page = async ({ params }: PageProps) => {
                   className="h-5 w-5 flex-shrink-0 text-green-500"
                 />
                 <p className="ml-2 text-sm text-muted-foreground">
-                  Origine France
+                  Origine Bretagne
                 </p>
               </div>
             </section>

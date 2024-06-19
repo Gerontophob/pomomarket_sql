@@ -35,6 +35,7 @@ const Page = () => {
         toast.error(
           "Cet e-mail est déjà utilisé. Voulez-vous vous connecter à la place ?"
         );
+        return;
       }
 
       if (err instanceof ZodError) {

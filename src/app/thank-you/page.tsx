@@ -3,7 +3,7 @@ import Image from "next/image";
 import { cookies } from "next/headers";
 import { getPayloadClient } from "@/get-payload";
 import { notFound, redirect } from "next/navigation";
-import { Product, ProductFile, User } from "@/payload-types";
+import { Product, User } from "@/payload-types";
 import { PRODUCT_CATEGORIES } from "@/config";
 import { formatPrice } from "@/lib/utils";
 import Link from "next/link";
@@ -80,7 +80,7 @@ const ThankYouPage = async ({ searchParams }: PageProps) => {
               Nous avons envoyé votre reçu et les détails de votre commande à{" "}
               {typeof order.user !== "string" ? (
                 <span className="font-medium text-gray-900">
-                  {order.user.email}
+                  {(order.user as User | undefined)?.email}
                 </span>
               ) : null}
               .
@@ -102,9 +102,6 @@ const ThankYouPage = async ({ searchParams }: PageProps) => {
                 const label = PRODUCT_CATEGORIES.find(
                   ({ value }) => value === product.category
                 )?.label;
-
-                const downloadUrl = (product.product_files as ProductFile)
-                  .url as string;
 
                 const { image } = product.images[0];
 
@@ -157,9 +154,9 @@ const ThankYouPage = async ({ searchParams }: PageProps) => {
             </div>
 
             <PaymentStatus
-              isPaid={order._isPaid}
+              isPaid={order._isPaid as boolean}
               orderEmail={(order.user as User).email}
-              orderId={order.id}
+              orderId={order.id.toString()}
             />
 
             <div className="mt-16 border-t border-gray-200 py-6 text-right">
