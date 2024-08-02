@@ -15,6 +15,18 @@ interface ProductReelProps {
 
 const FALLBACK_LIMIT = 4;
 
+const isProduct = (item: any): item is Product => {
+  return (
+    item &&
+    typeof item === "object" &&
+    "id" in item &&
+    "name" in item &&
+    "price" in item &&
+    "category" in item &&
+    "images" in item
+  );
+};
+
 const ProductReel = (props: ProductReelProps) => {
   const { title, subtitle, href, query } = props;
 
@@ -29,7 +41,9 @@ const ProductReel = (props: ProductReelProps) => {
       }
     );
 
-  const products = queryResults?.pages.flatMap((page) => page.items);
+  const products = queryResults?.pages
+    .flatMap((page) => page.items)
+    .filter(isProduct);
 
   let map: (Product | null)[] = [];
   if (products && products.length) {

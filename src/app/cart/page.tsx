@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Media } from "../../payload-types";
 
 const Page = () => {
   const { items, removeItem } = useCart();
@@ -23,7 +24,7 @@ const Page = () => {
       },
     });
 
-  const productIds = items.map(({ product }) => product.id);
+  const productIds = items.map(({ product }) => product.id.toString());
 
   const [isMounted, setIsMounted] = useState<boolean>(false);
   useEffect(() => {
@@ -87,16 +88,21 @@ const Page = () => {
                     (c) => c.value === product.category
                   )?.label;
 
-                  const { image } = product.images[0];
+                  const { image } = product.images[0] as { image: Media };
 
                   return (
-                    <li key={product.id} className="flex py-6 sm:py-10">
+                    <li
+                      key={product.id.toString()}
+                      className="flex py-6 sm:py-10"
+                    >
                       <div className="flex-shrink-0">
                         <div className="relative h-24 w-24">
-                          {typeof image !== "string" && image.url ? (
+                          {typeof image !== "string" &&
+                          image &&
+                          "url" in image ? (
                             <Image
                               fill
-                              src={image.url}
+                              src={image.url ?? "fallback-image-url.jpg"} // Ensure a fallback URL
                               alt="product image"
                               className="h-full w-full rounded-md object-cover object-center sm:h-48 sm:w-48"
                             />
@@ -133,7 +139,9 @@ const Page = () => {
                             <div className="absolute right-0 top-0">
                               <Button
                                 aria-label="remove product"
-                                onClick={() => removeItem(product.id)}
+                                onClick={() =>
+                                  removeItem(product.id.toString())
+                                }
                                 variant="ghost"
                               >
                                 <X className="h-5 w-5" aria-hidden="true" />
@@ -141,12 +149,6 @@ const Page = () => {
                             </div>
                           </div>
                         </div>
-
-                        {/* <p className="mt-4 flex space-x-2 text-sm text-gray-700"> */}
-                        {/* <Check className="h-5 w-5 flex-shrink-0 text-green-500" /> */}
-
-                        {/* <span>?Placeholder text - do we need it?</span> */}
-                        {/* </p> */}
                       </div>
                     </li>
                   );

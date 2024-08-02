@@ -3,7 +3,7 @@ import Image from "next/image";
 import { cookies } from "next/headers";
 import { getPayloadClient } from "@/get-payload";
 import { notFound, redirect } from "next/navigation";
-import { Product, User } from "@/payload-types";
+import { Product, User, Media } from "@/payload-types";
 import { PRODUCT_CATEGORIES } from "@/config";
 import { formatPrice } from "@/lib/utils";
 import Link from "next/link";
@@ -39,7 +39,7 @@ const ThankYouPage = async ({ searchParams }: PageProps) => {
   if (!order) return notFound();
 
   const orderUserId =
-    typeof order.user === "string" ? order.user : order.user.id;
+    typeof order.user === "string" ? order.user : (order.user as User).id;
 
   if (orderUserId !== user?.id) {
     return redirect(`/sign-in?origin=thank-you?orderId=${order.id}`);
@@ -103,15 +103,15 @@ const ThankYouPage = async ({ searchParams }: PageProps) => {
                   ({ value }) => value === product.category
                 )?.label;
 
-                const { image } = product.images[0];
+                const { image } = product.images[0] as { image: Media };
 
                 return (
                   <li key={product.id} className="flex space-x-6 py-6">
                     <div className="relative h-24 w-24">
-                      {typeof image !== "string" && image.url ? (
+                      {typeof image !== "string" && image && "url" in image ? (
                         <Image
                           fill
-                          src={image.url}
+                          src={image.url ?? "fallback-image-url.jpg"} // Ensure a fallback URL
                           alt={`${product.name} image`}
                           className="flex-none rounded-md bg-gray-100 object-cover object-center"
                         />

@@ -1,20 +1,20 @@
-import { Product } from '@/payload-types'
-import { create } from 'zustand'
+import { Product } from '@/payload-types';
+import { create } from 'zustand';
 import {
   createJSONStorage,
   persist,
-} from 'zustand/middleware'
+} from 'zustand/middleware';
 
-export type CartItem = {
-  product: Product
-}
+type CartItem = {
+  product: Product;
+};
 
 type CartState = {
-  items: CartItem[]
-  addItem: (product: Product) => void
-  removeItem: (productId: string) => void
-  clearCart: () => void
-}
+  items: CartItem[];
+  addItem: (product: Product) => void;
+  removeItem: (productId: number) => void;
+  clearCart: () => void;
+};
 
 export const useCart = create<CartState>()(
   persist(
@@ -22,7 +22,7 @@ export const useCart = create<CartState>()(
       items: [],
       addItem: (product) =>
         set((state) => {
-          return { items: [...state.items, { product }] }
+          return { items: [...state.items, { product }] };
         }),
       removeItem: (id) =>
         set((state) => ({
@@ -37,4 +37,4 @@ export const useCart = create<CartState>()(
       storage: createJSONStorage(() => localStorage),
     }
   )
-)
+);

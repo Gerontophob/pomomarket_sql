@@ -4,9 +4,10 @@ import { formatPrice } from "@/lib/utils";
 import { Product } from "@/payload-types";
 import { ImageIcon, X } from "lucide-react";
 import Image from "next/image";
+import { Media } from "../payload-types";
 
 const CartItem = ({ product }: { product: Product }) => {
-  const { image } = product.images[0];
+  const { image } = product.images[0] as { image: Media };
   const { removeItem } = useCart();
 
   const label = PRODUCT_CATEGORIES.find(
@@ -18,9 +19,9 @@ const CartItem = ({ product }: { product: Product }) => {
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center space-x-4">
           <div className="relative aspect-square h-16 w-16 min-w-fit overflow-hidden rounded">
-            {typeof image !== "string" && image.url ? (
+            {typeof image !== "string" && image && "url" in image ? (
               <Image
-                src={image.url}
+                src={image.url ?? "fallback-image-url.jpg"} // Ensure a fallback URL
                 alt={product.name}
                 fill
                 className="absolute object-cover"
@@ -46,7 +47,7 @@ const CartItem = ({ product }: { product: Product }) => {
 
             <div className="mt-4 text-xs text-muted-foreground">
               <button
-                onClick={() => removeItem(product.id)}
+                onClick={() => removeItem(product.id.toString())}
                 className="flex items-center gap-0.5"
               >
                 <X className="w-3 h-4" />

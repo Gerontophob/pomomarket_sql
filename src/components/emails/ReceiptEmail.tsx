@@ -100,7 +100,9 @@ export const ReceiptEmail = ({
             return (
               <Section key={product.id}>
                 <Column style={{ width: "64px" }}>
-                  {typeof image !== "string" && image.url ? (
+                  {typeof image !== "string" &&
+                  typeof image !== "number" &&
+                  image?.url ? (
                     <Img
                       src={image.url}
                       width="64"
@@ -120,7 +122,6 @@ export const ReceiptEmail = ({
                     </Text>
                   ) : null}
                 </Column>
-
                 <Column style={productPriceWrapper} align="right">
                   <Text style={productPrice}>{formatPrice(product.price)}</Text>
                 </Column>
@@ -163,7 +164,7 @@ export const ReceiptEmail = ({
           </Text>
           <Text style={footerCopyright}>
             © 2024 POMO - Tous droits réservés <br />{" "}
-            <Link href="#">ami@pomo.today</Link>
+            <Link href="#">ami@pomo.bio</Link>
           </Text>
         </Container>
       </Body>

@@ -1,6 +1,6 @@
 import { buildConfig } from 'payload/config'
 import { webpackBundler } from '@payloadcms/bundler-webpack'
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { postgresAdapter } from '@payloadcms/db-postgres'
 import { slateEditor } from '@payloadcms/richtext-slate'
 import path from 'path'
 import { Users } from './collections/Users'
@@ -32,8 +32,10 @@ export default buildConfig({
     max: 2000,
   },
   editor: slateEditor({}),
-  db: mongooseAdapter({
-    url: process.env.MONGODB_URL!,
+  db: postgresAdapter({
+    pool: {
+      connectionString: process.env.DATABASE_URL,
+    },
   }),
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
